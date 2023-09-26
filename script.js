@@ -71,6 +71,9 @@ function selectToken(id) {
 }
 
 function startGame() {
+    const cellWidth = game.canvas.width / 20;
+    const cellHeight = game.canvas.height / 20;
+
     setupScreen.setVisible(false);
     players = selectedTokens.map(tokenId => {
         const token = tokenOptions.find(option => option.id === tokenId);
