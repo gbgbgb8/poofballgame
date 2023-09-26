@@ -18,6 +18,7 @@ let players;
 let diceRollButton;
 let currentRoll;
 let currentPlayerIndex = 0;
+let turnText;
 
 function preload() {
     this.load.image('dog', 'https://img.icons8.com/color/dog/50');
@@ -65,6 +66,7 @@ function startGame() {
     diceRollButton = this.add.text(700, 700, '🎲 Roll', { fontSize: '48px' });
     diceRollButton.setInteractive();
     diceRollButton.on('pointerdown', rollDice);
+    turnText = this.add.text(700, 600, `Turn: ${selectedTokens[currentPlayerIndex]}`, { fontSize: '24px' });
 }
 
 function rollDice() {
@@ -77,6 +79,7 @@ function movePlayer() {
     let currentPlayer = players[currentPlayerIndex];
     currentPlayer.x += currentRoll * 10;
     currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+    turnText.setText(`Turn: ${selectedTokens[currentPlayerIndex]}`);
 }
 
 function update() {
