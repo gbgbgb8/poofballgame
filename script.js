@@ -1,7 +1,11 @@
 const config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 800,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 800,
+        height: 800
+    },
     scene: {
         create: create,
         update: update
@@ -48,9 +52,11 @@ function drawSetupScreen() {
 
 function drawGrid() {
     gridGraphics.lineStyle(1, 0xFFFFFF, 0.8);
-    for (let x = 0; x <= 800; x += 40) {
-        for (let y = 0; y <= 800; y += 40) {
-            gridGraphics.strokeRect(x, y, 40, 40);
+    const cellWidth = game.canvas.width / 20;
+    const cellHeight = game.canvas.height / 20;
+    for (let x = 0; x <= game.canvas.width; x += cellWidth) {
+        for (let y = 0; y <= game.canvas.height; y += cellHeight) {
+            gridGraphics.strokeRect(x, y, cellWidth, cellHeight);
         }
     }
 }
@@ -68,17 +74,17 @@ function startGame() {
     setupScreen.setVisible(false);
     players = selectedTokens.map(tokenId => {
         const token = tokenOptions.find(option => option.id === tokenId);
-        return this.add.text(20, 760, token.emoji, { fontSize: '32px' });
+        return this.add.text(cellWidth / 2, game.canvas.height - cellHeight / 2, token.emoji, { fontSize: '32px' });
     });
 
-    diceRollButton = this.add.text(700, 720, '🎲', { fontSize: '48px' });
+    diceRollButton = this.add.text(game.canvas.width - cellWidth, game.canvas.height - cellHeight, '🎲', { fontSize: '48px' });
     diceRollButton.setInteractive();
     diceRollButton.on('pointerdown', rollDice);
 
-    diceRollResult = this.add.text(650, 780, '', { fontSize: '24px' });
+    diceRollResult = this.add.text(game.canvas.width - 2 * cellWidth, game.canvas.height - cellHeight / 2, '', { fontSize: '24px' });
 
     const currentEmoji = tokenOptions.find(option => option.id === selectedTokens[currentPlayerIndex]).emoji;
-    turnText = this.add.text(650, 650, `Turn: ${currentEmoji}`, { fontSize: '24px' });
+    turnText = this.add.text(game.canvas.width - 2 * cellWidth, game.canvas.height - 2 * cellHeight, `Turn: ${currentEmoji}`, { fontSize: '24px' });
 }
 
 function rollDice() {
@@ -89,12 +95,13 @@ function rollDice() {
 
 function movePlayer() {
     let currentPlayer = players[currentPlayerIndex];
-    let newGridX = (currentPlayer.x - 20) / 40 + currentRoll;
+    const cellWidth = game.canvas.width / 20;
+    let newGridX = (currentPlayer.x - cellWidth / 2) / cellWidth + currentRoll;
 
-    if (newGridX * 40 + 20 <= 780) {
-        currentPlayer.x = newGridX * 40 + 20;
+    if (newGridX * cellWidth + cellWidth / 2 <= game.canvas.width - cellWidth / 2) {
+        currentPlayer.x = newGridX * cellWidth + cellWidth / 2;
     } else {
-        currentPlayer.x = 780;
+        currentPlayer.x = game.canvas.width - cellWidth / 2;
     }
 
     currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
