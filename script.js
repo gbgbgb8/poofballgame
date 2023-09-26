@@ -17,6 +17,7 @@ let selectedTokens = [];
 let players;
 let diceRollButton;
 let currentRoll;
+let currentPlayerIndex = 0;
 
 function preload() {
     this.load.image('dog', 'https://img.icons8.com/color/dog/50');
@@ -59,7 +60,7 @@ function selectToken(id) {
 function startGame() {
     setupScreen.setVisible(false);
     players = selectedTokens.map(tokenId => {
-        return this.add.image(0, 0, tokenId);
+        return this.add.image(50, 750, tokenId).setScale(0.5);
     });
     diceRollButton = this.add.text(700, 700, '🎲 Roll', { fontSize: '48px' });
     diceRollButton.setInteractive();
@@ -69,6 +70,13 @@ function startGame() {
 function rollDice() {
     currentRoll = Math.floor(Math.random() * 6) + 1;
     console.log(`Rolled: ${currentRoll}`);
+    movePlayer();
+}
+
+function movePlayer() {
+    let currentPlayer = players[currentPlayerIndex];
+    currentPlayer.x += currentRoll * 10;
+    currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
 }
 
 function update() {
