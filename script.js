@@ -14,10 +14,13 @@ const game = new Phaser.Game(config);
 let setupScreen;
 let tokenOptions;
 let selectedTokens = [];
+let players;
 
 function preload() {
     this.load.image('dog', 'https://img.icons8.com/color/dog/50');
     this.load.image('cat', 'https://img.icons8.com/color/cat/50');
+    this.load.image('frog', 'https://img.icons8.com/color/frog/50');
+    this.load.image('alien', 'https://img.icons8.com/color/alien/50');
 }
 
 function create() {
@@ -28,7 +31,7 @@ function create() {
         { id: 'frog', emoji: '🐸' },
         { id: 'alien', emoji: '👽' }
     ];
-    drawSetupScreen();
+    drawSetupScreen.call(this);
 }
 
 function drawSetupScreen() {
@@ -36,25 +39,26 @@ function drawSetupScreen() {
     tokenOptions.forEach((option, index) => {
         const text = this.add.text(100, yPosition, option.emoji, { fontSize: '48px' });
         text.setInteractive();
-        text.on('pointerdown', () => selectToken(option.id));
+        text.on('pointerdown', () => selectToken.call(this, option.id));
         setupScreen.add(text);
         yPosition += 60;
     });
 }
 
 function selectToken(id) {
-    if (selectedTokens.length < 2) {
+    if (selectedTokens.length < 4) {
         selectedTokens.push(id);
-        if (selectedTokens.length === 2) {
-            startGame();
+        if (selectedTokens.length === 2) {  // Modify this to 4 for four players
+            startGame.call(this);
         }
     }
 }
 
 function startGame() {
     setupScreen.setVisible(false);
-    // Initialize and place players based on selectedTokens
-    // ... rest of the main game loop
+    players = selectedTokens.map(tokenId => {
+        return this.add.image(0, 0, tokenId);
+    });
 }
 
 function update() {

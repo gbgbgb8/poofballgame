@@ -97,7 +97,13 @@ The PoofBalls Board Game is a 2D grid-based game designed for 2 to 4 players. It
 6. **Phase 6**: Implementation of the shop (post-Level 1).
 
 ---
+Phase 1: Basic Grid Layout and Player Movement
+Steps:
 
-This manual and layout description encapsulate the complete mechanics, rules, and phases of development for the Emojis Board Game. It serves as a comprehensive guide for both playing and developing the game further.
-
-Feel free to refer back to this document in any future development or gameplay sessions.
+Initialize Phaser Game: Create a new Phaser game with a 20x20 grid.
+Player Tokens: Add emoji images to be used as player tokens. Allow players to select these during the setup phase.
+Place Players: After token selection, place the players' tokens at the starting square of the grid.
+Dice Roll Mechanism: Implement a button or an interactive sprite that allows players to "roll" a dice, generating a random number from 1 to 6.
+Player Movement: Move the player token based on the dice roll. For now, let's assume a linear path from start to finish.
+Turn Mechanics: Implement a basic turn mechanism where control is passed from one player to the next after a move.
+Boundary Conditions: Ensure that players can't move outside the 20x20 grid.
