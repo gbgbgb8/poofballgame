@@ -68,7 +68,7 @@ function startGame() {
     setupScreen.setVisible(false);
     players = selectedTokens.map(tokenId => {
         const token = tokenOptions.find(option => option.id === tokenId);
-        return this.add.text(40, 760, token.emoji, { fontSize: '32px' });
+        return this.add.text(20, 760, token.emoji, { fontSize: '32px' });
     });
 
     diceRollButton = this.add.text(700, 720, '🎲', { fontSize: '48px' });
@@ -89,12 +89,12 @@ function rollDice() {
 
 function movePlayer() {
     let currentPlayer = players[currentPlayerIndex];
-    let newX = currentPlayer.x + currentRoll * 10;
+    let newGridX = (currentPlayer.x - 20) / 40 + currentRoll;
 
-    if (newX <= 790) {
-        currentPlayer.x = newX;
+    if (newGridX * 40 + 20 <= 780) {
+        currentPlayer.x = newGridX * 40 + 20;
     } else {
-        currentPlayer.x = 790;
+        currentPlayer.x = 780;
     }
 
     currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
