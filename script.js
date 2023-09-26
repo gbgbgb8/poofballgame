@@ -30,7 +30,6 @@ function create() {
     ];
     drawSetupScreen.call(this);
 
-    // Create a new graphics object and draw grid
     gridGraphics = this.add.graphics();
     drawGrid.call(this);
 }
@@ -67,17 +66,15 @@ function selectToken(id) {
 
 function startGame() {
     setupScreen.setVisible(false);
-    gridGraphics.clear();
-    drawGrid.call(this);
-
     players = selectedTokens.map(tokenId => {
-        return this.add.text(50, 750, tokenOptions.find(x => x.id === tokenId).emoji, { fontSize: '48px' });
+        return this.add.text(40, 760, tokenId, { fontSize: '32px' });
     });
-    diceRollButton = this.add.text(700, 700, '🎲 Roll', { fontSize: '48px' });
+    diceRollButton = this.add.text(720, 720, '🎲 Roll', { fontSize: '32px' });
     diceRollButton.setInteractive();
     diceRollButton.on('pointerdown', rollDice);
-    turnText = this.add.text(700, 600, `Turn: ${selectedTokens[currentPlayerIndex]}`, { fontSize: '24px' });
+    turnText = this.add.text(650, 650, `Turn: ${selectedTokens[currentPlayerIndex]}`, { fontSize: '24px' });
 }
+
 
 function rollDice() {
     currentRoll = Math.floor(Math.random() * 6) + 1;
