@@ -77,7 +77,15 @@ function rollDice() {
 
 function movePlayer() {
     let currentPlayer = players[currentPlayerIndex];
-    currentPlayer.x += currentRoll * 10;
+    let newX = currentPlayer.x + currentRoll * 10;
+    
+    // Boundary condition: Do not move outside the 20x20 grid (assumes each square is 10x10 pixels)
+    if (newX <= 790) {  // 790 is the maximum x-coordinate within the grid
+        currentPlayer.x = newX;
+    } else {
+        currentPlayer.x = 790;
+    }
+    
     currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
     turnText.setText(`Turn: ${selectedTokens[currentPlayerIndex]}`);
 }
