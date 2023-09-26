@@ -73,7 +73,9 @@ function startGame() {
     diceRollButton = this.add.text(720, 720, '🎲 Roll', { fontSize: '32px' });
     diceRollButton.setInteractive();
     diceRollButton.on('pointerdown', rollDice);
-    turnText = this.add.text(650, 650, `Turn: ${selectedTokens[currentPlayerIndex]}`, { fontSize: '24px' });
+
+    const currentEmoji = tokenOptions.find(option => option.id === selectedTokens[currentPlayerIndex]).emoji;
+    turnText = this.add.text(650, 650, `Turn: ${currentEmoji}`, { fontSize: '24px' });
 }
 
 
@@ -94,7 +96,8 @@ function movePlayer() {
     }
 
     currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-    turnText.setText(`Turn: ${selectedTokens[currentPlayerIndex]}`);
+    const nextEmoji = tokenOptions.find(option => option.id === selectedTokens[currentPlayerIndex]).emoji;
+    turnText.setText(`Turn: ${nextEmoji}`);
 }
 
 function update() {
