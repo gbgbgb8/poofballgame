@@ -19,6 +19,7 @@ let currentRoll;
 let currentPlayerIndex = 0;
 let turnText;
 let gridGraphics;
+let diceRollResult;
 
 function create() {
     setupScreen = this.add.container(0, 0);
@@ -54,7 +55,6 @@ function drawGrid() {
     }
 }
 
-
 function selectToken(id) {
     if (selectedTokens.length < 4) {
         selectedTokens.push(id);
@@ -70,29 +70,31 @@ function startGame() {
         const token = tokenOptions.find(option => option.id === tokenId);
         return this.add.text(40, 760, token.emoji, { fontSize: '32px' });
     });
-    diceRollButton = this.add.text(720, 720, '🎲 Roll', { fontSize: '32px' });
+
+    diceRollButton = this.add.text(700, 720, '🎲', { fontSize: '48px' });
     diceRollButton.setInteractive();
     diceRollButton.on('pointerdown', rollDice);
+
+    diceRollResult = this.add.text(650, 780, '', { fontSize: '24px' });
 
     const currentEmoji = tokenOptions.find(option => option.id === selectedTokens[currentPlayerIndex]).emoji;
     turnText = this.add.text(650, 650, `Turn: ${currentEmoji}`, { fontSize: '24px' });
 }
 
-
 function rollDice() {
     currentRoll = Math.floor(Math.random() * 6) + 1;
-    console.log(`Rolled: ${currentRoll}`);
+    diceRollResult.setText(`Rolled: ${currentRoll}`);
     movePlayer();
 }
 
 function movePlayer() {
     let currentPlayer = players[currentPlayerIndex];
-    let newX = currentPlayer.x + currentRoll * 40;
+    let newX = currentPlayer.x + currentRoll * 10;
 
-    if (newX <= 760) {
+    if (newX <= 790) {
         currentPlayer.x = newX;
     } else {
-        currentPlayer.x = 760;
+        currentPlayer.x = 790;
     }
 
     currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
