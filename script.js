@@ -3,7 +3,6 @@ const config = {
     width: 800,
     height: 800,
     scene: {
-        preload: preload,
         create: create,
         update: update
     }
@@ -19,13 +18,7 @@ let diceRollButton;
 let currentRoll;
 let currentPlayerIndex = 0;
 let turnText;
-
-function preload() {
-    this.load.image('dog', 'https://img.icons8.com/color/dog/50');
-    this.load.image('cat', 'https://img.icons8.com/color/cat/50');
-    this.load.image('frog', 'https://img.icons8.com/color/frog/50');
-    this.load.image('alien', 'https://img.icons8.com/color/alien/50');
-}
+let gridGraphics;
 
 function create() {
     setupScreen = this.add.container(0, 0);
@@ -36,6 +29,10 @@ function create() {
         { id: 'alien', emoji: '👽' }
     ];
     drawSetupScreen.call(this);
+
+    // Create a new graphics object and draw grid
+    gridGraphics = this.add.graphics();
+    drawGrid.call(this);
 }
 
 function drawSetupScreen() {
@@ -49,10 +46,19 @@ function drawSetupScreen() {
     });
 }
 
+function drawGrid() {
+    gridGraphics.lineStyle(1, 0xFFFFFF, 0.8);
+    for (let x = 50; x < 800; x += 40) {
+        for (let y = 50; y < 800; y += 40) {
+            gridGraphics.strokeRect(x, y, 40, 40);
+        }
+    }
+}
+
 function selectToken(id) {
     if (selectedTokens.length < 4) {
         selectedTokens.push(id);
-        if (selectedTokens.length === 2) {  // Modify this to 4 for four players
+        if (selectedTokens.length === 2) {
             startGame.call(this);
         }
     }
@@ -60,8 +66,11 @@ function selectToken(id) {
 
 function startGame() {
     setupScreen.setVisible(false);
+    gridGraphics.clear();
+    drawGrid.call(this);
+
     players = selectedTokens.map(tokenId => {
-        return this.add.image(50, 750, tokenId).setScale(0.5);
+        return this.add.text(50, 750, tokenOptions.find(x => x.id === tokenId).emoji, { fontSize: '48px' });
     });
     diceRollButton = this.add.text(700, 700, '🎲 Roll', { fontSize: '48px' });
     diceRollButton.setInteractive();
@@ -78,14 +87,13 @@ function rollDice() {
 function movePlayer() {
     let currentPlayer = players[currentPlayerIndex];
     let newX = currentPlayer.x + currentRoll * 10;
-    
-    // Boundary condition: Do not move outside the 20x20 grid (assumes each square is 10x10 pixels)
-    if (newX <= 790) {  // 790 is the maximum x-coordinate within the grid
+
+    if (newX <= 790) {
         currentPlayer.x = newX;
     } else {
         currentPlayer.x = 790;
     }
-    
+
     currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
     turnText.setText(`Turn: ${selectedTokens[currentPlayerIndex]}`);
 }
