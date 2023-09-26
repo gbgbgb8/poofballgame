@@ -1,11 +1,11 @@
 
 ---
 
-# Emojis Board Game - Instruction Manual and Game Layout
+# PoofBall Board Game - Instruction Manual and Game Layout
 
 ## Introduction
 
-The Emojis Board Game is a 2D grid-based game designed for 2 to 4 players. It uses a variety of emoji tokens to represent players, enemies, and other game elements. The game is developed using Phaser.js and consists of multiple levels, with the first being a 20x20 grid. The goal is to reach the Princess emoji at the Finish square before the other players.
+The PoofBalls Board Game is a 2D grid-based game designed for 2 to 4 players. It uses a variety of emoji tokens to represent players, enemies, and other game elements. The game is developed using Phaser.js and consists of multiple levels, with the first being a 20x20 grid. The goal is to reach the Princess emoji at the Finish square before the other players.
 
 ---
 
