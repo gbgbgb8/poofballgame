@@ -48,12 +48,13 @@ function drawSetupScreen() {
 
 function drawGrid() {
     gridGraphics.lineStyle(1, 0xFFFFFF, 0.8);
-    for (let x = 50; x < 800; x += 40) {
-        for (let y = 50; y < 800; y += 40) {
+    for (let x = 0; x <= 800; x += 40) {
+        for (let y = 0; y <= 800; y += 40) {
             gridGraphics.strokeRect(x, y, 40, 40);
         }
     }
 }
+
 
 function selectToken(id) {
     if (selectedTokens.length < 4) {
