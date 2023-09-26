@@ -107,3 +107,24 @@ Dice Roll Mechanism: Implement a button or an interactive sprite that allows pla
 Player Movement: Move the player token based on the dice roll. For now, let's assume a linear path from start to finish.
 Turn Mechanics: Implement a basic turn mechanism where control is passed from one player to the next after a move.
 Boundary Conditions: Ensure that players can't move outside the 20x20 grid.
+
+Certainly, let's proceed with the next step in the development process.
+
+---
+
+## Development Phases
+
+1. **Phase 1: Basic Grid Layout and Player Movement**
+    - Initialize Phaser Game: Create a new Phaser game with a 20x20 grid.
+    - Player Tokens: Add emoji images to be used as player tokens. Allow players to select these during the setup phase.
+    - **Place Players**: After token selection, place the players' tokens at the starting square of the grid.
+    - Dice Roll Mechanism: Implement a button or an interactive sprite that allows players to "roll" a dice, generating a random number from 1 to 6.
+    - Player Movement: Move the player token based on the dice roll. For now, let's assume a linear path from start to finish.
+    - Turn Mechanics: Implement a basic turn mechanism where control is passed from one player to the next after a move.
+    - Boundary Conditions: Ensure that players can't move outside the 20x20 grid.
+
+2. **Phase 2**: Bad guys and basic battle mechanics.
+3. **Phase 3**: Treasures and their utilities.
+4. **Phase 4**: Special squares and their effects.
+5. **Phase 5**: Winning conditions and level transitions.
+6. **Phase 6**: Implementation of the shop (post-Level 1).
