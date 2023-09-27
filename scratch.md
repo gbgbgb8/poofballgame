@@ -1,130 +1,145 @@
+Great, then I will go ahead and create a detailed guide for resuming this project tomorrow.
 
 ---
 
-# PoofBall Board Game - Instruction Manual and Game Layout
+# PoofBall Board Game: Resumption Guide
+
+## Project Overview
+
+The PoofBall Board Game is a web-based, grid layout game designed for 2 players. The game is built using Phaser.js and consists of a 20x20 grid. The players move their emoji tokens on the grid based on dice rolls, with the aim of reaching the finish line first.
+
+### Key Features
+
+- Player Token Selection Screen
+- Dynamic Grid Layout
+- Player Turns and Movement
+- Dice Rolling Mechanism
+- Game Info Bar with:
+  - Turn Indicator
+  - Dice and Results
+  - Player Inventory ("Bag of Holding")
+  - Game Info Messages ("Battle!", "Treasure!", etc.)
+
+## Current State
+
+As of the last update, the game:
+
+- Allows for player token selection
+- Renders a 20x20 grid
+- Handles player turns and dice rolls
+- Includes a basic Game Info Bar
+
+### Known Issues
+
+- The layout of the Game Info Bar needs to be optimized; text and icons are not well-spaced or well-organized.
+  
+## What's Next
+
+1. **Game Info Bar**: Re-arrange the layout to fit all elements without overlapping or getting cut off. This includes the dice, dice results, player inventory, and messages.
+   - Use Phaser's text and image positioning to layout the elements.
+  
+2. **Player Inventory**: Each player should have a "Bag of Holding" represented by a bag emoji next to their player emoji in the Game Info Bar.
+   - This bag should be clickable and should eventually show the player's inventory items.
+
+3. **Game Info Messages**: Implement a mechanism to display in-game messages like "Battle!", "Treasure!", etc. in the Game Info Bar.
+
+4. **Game Mechanics**: As of now, only the basic movement is implemented. Additional game mechanics like battles, treasures, and special squares are to be added.
+
+5. **Code Refactoring**: It's a good idea to keep an eye on the code structure and consider refactoring for cleaner, more maintainable code.
+
+6. **Testing**: As features get added, testing them to make sure they integrate well with existing functionalities is important.
+
+## Project Files
+
+- `index.html`: The HTML layout that hosts the game.
+- `script.js`: The main JavaScript file containing the game logic. As of the last update, this file has implemented the above-mentioned features and has known issues that need to be fixed.
+
+## Additional Notes
+
+- All changes should be tested in various browser sizes to ensure responsiveness.
+
+This guide should provide a good starting point for resuming work on the PoofBall Board Game.
+
+---
+
+Certainly, based on the current state of the game and its features, here's an updated and detailed manual that you can use to replace the existing one:
+
+---
+
+# PoofBall Board Game - Updated Instruction Manual and Game Layout
 
 ## Introduction
 
-The PoofBalls Board Game is a 2D grid-based game designed for 2 to 4 players. It uses a variety of emoji tokens to represent players, enemies, and other game elements. The game is developed using Phaser.js and consists of multiple levels, with the first being a 20x20 grid. The goal is to reach the Princess emoji at the Finish square before the other players.
-
----
+The PoofBalls Board Game is a web-based, 2D grid-based game designed for 2 players. It uses emoji tokens to represent players. Developed using Phaser.js, the game operates on a 20x20 grid. The aim is still to reach a designated finish square before the opponent.
 
 ## Game Components
 
 ### Players
 
-- Players: 2 to 4
-- Token Choices: Dog 🐶, Alien 👽, Frog 🐸, Cat 🐱, etc.
-  
+- Players: 2
+- Token Choices: Dog 🐶, Cat 🐱, Frog 🐸, Alien 👽
+
 ### Game Board
 
-- Grid Size: 20x20 for Level 1.
-- Special Squares: Lava 🌋, Water 💧.
-- Start 🏁 and Finish 🏁 squares.
-  
+- Grid Size: 20x20
+- **No Special Squares or Bad Guys as of the current version**
+- Start 🏁 and Finish 🏁 squares are assumed but not yet implemented.
+
 ### Dice
 
-- Emoji representations: 1️⃣, 2️⃣, 3️⃣, 4️⃣, 5️⃣, 6️⃣.
+- Emoji representation for the roll button: 🎲
+- Result displayed as number block emojis: 1️⃣, 2️⃣, 3️⃣, 4️⃣, 5️⃣, 6️⃣
+
+### Inventory (New)
+
+- Each player has a "Bag of Holding" represented by a bag emoji in the Game Info Bar.
   
-### Bad Guys
+### Game Info Bar (New)
 
-- Types: Weakling 😈, Tough Guy 👹.
-  
-### Treasures
-
-- Types: Hammer 🔨, Sword 🗡️, Coins (Gold 🥇, Silver 🥈, Copper 🥉).
-  
-### Shop
-
-- Items: Sword, Hammer.
-- Costs: Defined in terms of coins.
-
----
+- Displays whose turn it is.
+- A clickable dice emoji that shows the result when rolled.
+- Inventory ("Bag of Holding") for each player.
+- Game info messages like "Battle!", "Treasure!", etc. (planned, not yet implemented).
 
 ## Game Mechanics
 
 ### Setup
 
-1. **Number of Players**: The game asks for the number of players (2-4).
-2. **Token Selection**: Each player selects an emoji token.
-3. **Turn Order**: The turn order is randomly determined.
+1. **Token Selection**: Each player selects an emoji token.
+2. **Game Start**: The game begins after both players have selected their tokens.
 
 ### Main Game Loop
 
-1. **Roll Dice**: A player clicks a button to roll a six-faced dice.
+1. **Roll Dice**: A player clicks the dice emoji to roll a six-faced dice.
 2. **Movement**: The player moves the number of squares indicated by the dice roll.
-3. **Square Interaction**: Players interact based on the square they land on:
-    - **Bad Guys**: 
-        - *Weaklings* have a 50/50 chance of running away.
-        - *Tough Guys* never run away.
-        - Players can use inventory items like hammers and swords.
-    - **Treasures**: Players can collect them and use them later.
-    - **Special Squares**: Roll dice to determine movement. Odd numbers move backward one space, even numbers move forward one space.
-4. **Turn End**: Check if any player has reached the Finish square. If not, the next player takes their turn.
+3. **Turn End**: The next player takes their turn.
 
-### Inventory
+### Inventory (New)
 
-- No limit to the number of items.
-- Items can only be used once and must be selected at the beginning of a battle.
+- "Bag of Holding" is displayed but functionality to use or collect items is not yet implemented.
 
 ### Winning Condition
 
-- The first player to reach the Princess emoji at the Finish square wins the game.
+- **Not Yet Implemented**
 
 ### Progression
 
-- Upon completion of a level, the board is re-randomized for the next level.
-
----
-
-## Potential Issues and Resolutions
-
-1. **Bad Guy Difficulty**: There are two types, Weaklings and Tough Guys.
-2. **Multiple Treasures**: Players can hold multiple items, but items are single-use.
-3. **Game Balance**: No specific balancing done; it's acceptable for some players to have an advantage by finding treasures first.
-4. **Backward Movement**: The Start square is the limit for backward movement.
-5. **Draws**: In case of a draw, players will roll off until there is a winner.
-
----
-
-## Development Phases
-
-1. **Phase 1**: Basic grid layout and player movement.
-2. **Phase 2**: Bad guys and basic battle mechanics.
-3. **Phase 3**: Treasures and their utilities.
-4. **Phase 4**: Special squares and their effects.
-5. **Phase 5**: Winning conditions and level transitions.
-6. **Phase 6**: Implementation of the shop (post-Level 1).
-
----
-Phase 1: Basic Grid Layout and Player Movement
-Steps:
-
-Initialize Phaser Game: Create a new Phaser game with a 20x20 grid.
-Player Tokens: Add emoji images to be used as player tokens. Allow players to select these during the setup phase.
-Place Players: After token selection, place the players' tokens at the starting square of the grid.
-Dice Roll Mechanism: Implement a button or an interactive sprite that allows players to "roll" a dice, generating a random number from 1 to 6.
-Player Movement: Move the player token based on the dice roll. For now, let's assume a linear path from start to finish.
-Turn Mechanics: Implement a basic turn mechanism where control is passed from one player to the next after a move.
-Boundary Conditions: Ensure that players can't move outside the 20x20 grid.
-
-Certainly, let's proceed with the next step in the development process.
-
----
+- **Not Yet Implemented**
 
 ## Development Phases
 
 1. **Phase 1: Basic Grid Layout and Player Movement**
-    - Initialize Phaser Game: Create a new Phaser game with a 20x20 grid.
-    - Player Tokens: Add emoji images to be used as player tokens. Allow players to select these during the setup phase.
-    - **Place Players**: After token selection, place the players' tokens at the starting square of the grid.
-    - Dice Roll Mechanism: Implement a button or an interactive sprite that allows players to "roll" a dice, generating a random number from 1 to 6.
-    - Player Movement: Move the player token based on the dice roll. For now, let's assume a linear path from start to finish.
-    - Turn Mechanics: Implement a basic turn mechanism where control is passed from one player to the next after a move.
-    - Boundary Conditions: Ensure that players can't move outside the 20x20 grid.
+    - Player Tokens: Players choose from available emoji tokens.
+    - Dice Roll Mechanism: A clickable dice emoji in the Game Info Bar.
+    - Player Movement: Players move based on the dice roll.
+    - Turn Mechanics: Turn passes to the next player after a move.
+    - Game Info Bar: Displays turn, dice roll result, and player inventory.
 
-2. **Phase 2**: Bad guys and basic battle mechanics.
-3. **Phase 3**: Treasures and their utilities.
-4. **Phase 4**: Special squares and their effects.
-5. **Phase 5**: Winning conditions and level transitions.
-6. **Phase 6**: Implementation of the shop (post-Level 1).
+2. **Phase 2**: Implementation of bad guys and basic battle mechanics.
+3. **Phase 3**: Implementation of treasures and their utilities.
+4. **Phase 4**: Implementation of special squares and their effects.
+5. **Phase 5**: Implementation of winning conditions and level transitions.
+
+---
+
+This updated manual should give a more accurate picture of where the game currently stands and what has been implemented so far. Feel free to use this as the new instruction manual.
