@@ -4,7 +4,7 @@ const config = {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
         width: 800,
-        height: 800
+        height: 900
     },
     scene: {
         create: create,
@@ -24,7 +24,8 @@ let currentPlayerIndex = 0;
 let turnText;
 let gridGraphics;
 let diceRollResult;
-let infoBarHeight = 80;
+let infoBarHeight = 100;
+let bagsOfHolding = [];
 
 function create() {
     setupScreen = this.add.container(0, 0);
@@ -35,7 +36,6 @@ function create() {
         { id: 'alien', emoji: '👽' }
     ];
     drawSetupScreen.call(this);
-
     gridGraphics = this.add.graphics();
     drawGrid.call(this);
 }
@@ -81,14 +81,18 @@ function startGame() {
         return this.add.text(cellWidth / 2, game.canvas.height - infoBarHeight - cellHeight / 2, token.emoji, { fontSize: '32px' });
     });
 
-    diceRollButton = this.add.text(game.canvas.width - cellWidth, game.canvas.height - infoBarHeight / 2, '🎲', { fontSize: '48px' });
+    diceRollButton = this.add.text(game.canvas.width - 2 * cellWidth, game.canvas.height - infoBarHeight / 2, '🎲', { fontSize: '48px' });
     diceRollButton.setInteractive();
     diceRollButton.on('pointerdown', rollDice);
 
-    diceRollResult = this.add.text(game.canvas.width - 2 * cellWidth, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
+    diceRollResult = this.add.text(game.canvas.width - 3 * cellWidth, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
 
     const currentEmoji = tokenOptions.find(option => option.id === selectedTokens[currentPlayerIndex]).emoji;
     turnText = this.add.text(20, game.canvas.height - infoBarHeight / 2, `Turn: ${currentEmoji}`, { fontSize: '24px' });
+    
+    bagsOfHolding = selectedTokens.map(tokenId => {
+        return this.add.text(game.canvas.width - 4 * cellWidth, game.canvas.height - infoBarHeight / 2, '👜', { fontSize: '32px' });
+    });
 }
 
 function rollDice() {
