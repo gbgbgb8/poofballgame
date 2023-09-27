@@ -24,7 +24,7 @@ let currentPlayerIndex = 0;
 let turnText;
 let gridGraphics;
 let diceRollResult;
-let inventoryGraphics;
+let gameInfoText;
 let infoBarHeight = 100;
 let bagsOfHolding = [];
 
@@ -32,9 +32,7 @@ function create() {
     setupScreen = this.add.container(0, 0);
     tokenOptions = [
         { id: 'dog', emoji: '🐶' },
-        { id: 'cat', emoji: '🐱' },
-        { id: 'frog', emoji: '🐸' },
-        { id: 'alien', emoji: '👽' }
+        { id: 'cat', emoji: '🐱' }
     ];
     drawSetupScreen.call(this);
 
@@ -65,11 +63,9 @@ function drawGrid() {
 }
 
 function selectToken(id) {
-    if (selectedTokens.length < 4) {
-        selectedTokens.push(id);
-        if (selectedTokens.length === 2) {
-            startGame.call(this);
-        }
+    selectedTokens.push(id);
+    if (selectedTokens.length === 2) {
+        startGame.call(this);
     }
 }
 
@@ -80,23 +76,30 @@ function startGame() {
     setupScreen.setVisible(false);
     players = selectedTokens.map((tokenId, index) => {
         const token = tokenOptions.find(option => option.id === tokenId);
-        bagsOfHolding[index] = this.add.text(50 + index * 50, game.canvas.height - infoBarHeight / 2, `${token.emoji} 👜`, { fontSize: '24px' });
+        bagsOfHolding[index] = this.add.text(300 + index * 200, game.canvas.height - infoBarHeight / 2, `${token.emoji} 👜`, { fontSize: '24px' });
         return this.add.text(cellWidth / 2, game.canvas.height - infoBarHeight - cellHeight / 2, token.emoji, { fontSize: '32px' });
     });
 
-    diceRollButton = this.add.text(game.canvas.width - 100, game.canvas.height - infoBarHeight / 2, '🎲', { fontSize: '48px' });
+    turnText = this.add.text(20, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
+    updateTurnText();
+
+    diceRollButton = this.add.text(120, game.canvas.height - infoBarHeight / 2, '🎲', { fontSize: '48px' });
     diceRollButton.setInteractive();
     diceRollButton.on('pointerdown', rollDice);
 
-    diceRollResult = this.add.text(game.canvas.width - 180, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
+    diceRollResult = this.add.text(200, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
 
+    gameInfoText = this.add.text(700, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
+}
+
+function updateTurnText() {
     const currentEmoji = tokenOptions.find(option => option.id === selectedTokens[currentPlayerIndex]).emoji;
-    turnText = this.add.text(20, game.canvas.height - infoBarHeight / 2, `Turn: ${currentEmoji}`, { fontSize: '24px' });
+    turnText.setText(`${currentEmoji}'s Turn`);
 }
 
 function rollDice() {
     currentRoll = Math.floor(Math.random() * 6) + 1;
-    diceRollResult.setText(`Rolled: ${currentRoll}`);
+    diceRollResult.setText(`: ${currentRoll}️⃣`);
     movePlayer();
 }
 
@@ -113,8 +116,7 @@ function movePlayer() {
     }
 
     currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-    const nextEmoji = tokenOptions.find(option => option.id === selectedTokens[currentPlayerIndex]).emoji;
-    turnText.setText(`Turn: ${nextEmoji}`);
+    updateTurnText();
 }
 
 function update() {
