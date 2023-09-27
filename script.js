@@ -24,6 +24,7 @@ let currentPlayerIndex = 0;
 let turnText;
 let gridGraphics;
 let diceRollResult;
+let infoBar;
 
 function create() {
     setupScreen = this.add.container(0, 0);
@@ -75,19 +76,24 @@ function startGame() {
     const cellHeight = game.canvas.height / 20;
 
     setupScreen.setVisible(false);
+    
+    infoBar = this.add.graphics();
+    infoBar.fillStyle(0x000000, 0.8);
+    infoBar.fillRect(0, game.canvas.height - cellHeight, game.canvas.width, cellHeight);
+
     players = selectedTokens.map(tokenId => {
         const token = tokenOptions.find(option => option.id === tokenId);
         return this.add.text(cellWidth / 2, game.canvas.height - cellHeight / 2, token.emoji, { fontSize: '32px' });
     });
 
-    diceRollButton = this.add.text(game.canvas.width - cellWidth, game.canvas.height - cellHeight, '🎲', { fontSize: '48px' });
+    diceRollButton = this.add.text(game.canvas.width - cellWidth, game.canvas.height - cellHeight / 2, '🎲', { fontSize: '48px' });
     diceRollButton.setInteractive();
     diceRollButton.on('pointerdown', rollDice);
 
     diceRollResult = this.add.text(game.canvas.width - 2 * cellWidth, game.canvas.height - cellHeight / 2, '', { fontSize: '24px' });
 
     const currentEmoji = tokenOptions.find(option => option.id === selectedTokens[currentPlayerIndex]).emoji;
-    turnText = this.add.text(game.canvas.width - 2 * cellWidth, game.canvas.height - 2 * cellHeight, `Turn: ${currentEmoji}`, { fontSize: '24px' });
+    turnText = this.add.text(game.canvas.width - 3 * cellWidth, game.canvas.height - cellHeight / 2, `Turn: ${currentEmoji}`, { fontSize: '24px' });
 }
 
 function rollDice() {
