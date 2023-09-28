@@ -35,6 +35,7 @@ function create() {
         { id: 'cat', emoji: '🐱' }
     ];
     drawSetupScreen.call(this);
+
     gridGraphics = this.add.graphics();
     drawGrid.call(this);
 }
@@ -79,16 +80,16 @@ function startGame() {
         return this.add.text(cellWidth / 2, game.canvas.height - infoBarHeight - cellHeight / 2, token.emoji, { fontSize: '32px' });
     });
 
-    turnText = this.add.text(110, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
+    turnText = this.add.text(60, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
     updateTurnText();
 
-    diceRollButton = this.add.text(10, game.canvas.height - infoBarHeight / 2, '🎲', { fontSize: '48px' });
+    diceRollButton = this.add.text(20, game.canvas.height - infoBarHeight / 2, '🎲', { fontSize: '48px' });
     diceRollButton.setInteractive();
     diceRollButton.on('pointerdown', rollDice);
 
-    diceRollResult = this.add.text(60, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
+    diceRollResult = this.add.text(80, game.canvas.height - infoBarHeight / 2, '', { fontSize: '48px' });
 
-    gameInfoText = this.add.text(600, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
+    gameInfoText = this.add.text(700, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
 }
 
 function updateTurnText() {
@@ -98,7 +99,7 @@ function updateTurnText() {
 
 function rollDice() {
     currentRoll = Math.floor(Math.random() * 6) + 1;
-    diceRollResult.setText(`: ${currentRoll}️⃣`);
+    diceRollResult.setText(`${currentRoll}️⃣`);
     movePlayer();
 }
 
