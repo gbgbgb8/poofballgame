@@ -1,131 +1,70 @@
-# PoofBall Board Game: Resumption Guide
 
-## Project Overview
-
-The PoofBall Board Game is a web-based, grid layout game designed for 2 players. The game is built using Phaser.js and consists of a 20x20 grid. The players move their emoji tokens on the grid based on dice rolls, with the aim of reaching the finish line first.
-
-### Key Features
-
-- Player Token Selection Screen
-- Dynamic Grid Layout
-- Player Turns and Movement
-- Dice Rolling Mechanism
-- Game Info Bar with:
-  - Turn Indicator
-  - Dice and Results
-  - Player Inventory ("Bag of Holding")
-  - Game Info Messages ("Battle!", "Treasure!", etc.)
-
-## Current State
-
-As of the last update, the game:
-
-- Allows for player token selection
-- Renders a 20x20 grid
-- Handles player turns and dice rolls
-- Includes a basic Game Info Bar
-
-### Known Issues
-
-- The layout of the Game Info Bar needs to be optimized; text and icons are not well-spaced or well-organized.
-  
-## What's Next
-
-1. **Game Info Bar**: Re-arrange the layout to fit all elements without overlapping or getting cut off. This includes the dice, dice results, player inventory, and messages.
-   - Use Phaser's text and image positioning to layout the elements.
-  
-2. **Player Inventory**: Each player should have a "Bag of Holding" represented by a bag emoji next to their player emoji in the Game Info Bar.
-   - This bag should be clickable and should eventually show the player's inventory items.
-
-3. **Game Info Messages**: Implement a mechanism to display in-game messages like "Battle!", "Treasure!", etc. in the Game Info Bar.
-
-4. **Game Mechanics**: As of now, only the basic movement is implemented. Additional game mechanics like battles, treasures, and special squares are to be added.
-
-5. **Code Refactoring**: It's a good idea to keep an eye on the code structure and consider refactoring for cleaner, more maintainable code.
-
-6. **Testing**: As features get added, testing them to make sure they integrate well with existing functionalities is important.
-
-## Project Files
-
-- `index.html`: The HTML layout that hosts the game.
-- `script.js`: The main JavaScript file containing the game logic. As of the last update, this file has implemented the above-mentioned features and has known issues that need to be fixed.
-
-## Additional Notes
-
-- All changes should be tested in various browser sizes to ensure responsiveness.
-
-This guide should provide a good starting point for resuming work on the PoofBall Board Game.
-
-# PoofBall Board Game - Updated Instruction Manual and Game Layout
+# PoofBall Board Game: Comprehensive Resumption Guide
 
 ## Introduction
 
-The PoofBalls Board Game is a web-based, 2D grid-based game designed for 2 players. It uses emoji tokens to represent players. Developed using Phaser.js, the game operates on a 20x20 grid. The aim is still to reach a designated finish square before the opponent.
+This guide serves as a comprehensive manual for resuming work on the PoofBall Board Game. The game is a web-based, 2D grid game designed for 2 players, developed using Phaser.js.
 
-## Game Components
+---
 
-### Players
+## Current Status as of Last Session
 
-- Players: 2
-- Token Choices: Dog 🐶, Cat 🐱, Frog 🐸, Alien 👽
+### Achievements
 
-### Game Board
+- Players can select tokens to represent them in the game.
+- A 20x20 grid layout has been implemented.
+- Players can take turns rolling a dice.
+- Players can move based on dice rolls.
+- A basic Game Info Bar has been added with the following features:
+    - Turn Indicator
+    - Dice and Dice Results
+    - "Bag of Holding" for each player
 
-- Grid Size: 20x20
-- **No Special Squares or Bad Guys as of the current version**
-- Start 🏁 and Finish 🏁 squares are assumed but not yet implemented.
+### Known Issues
 
-### Dice
+- The layout of the Game Info Bar needed optimization. This issue was addressed but might need future refinements.
 
-- Emoji representation for the roll button: 🎲
-- Result displayed as number block emojis: 1️⃣, 2️⃣, 3️⃣, 4️⃣, 5️⃣, 6️⃣
+### Code Base
 
-### Inventory (New)
+- Main JavaScript file: `script.js`
 
-- Each player has a "Bag of Holding" represented by a bag emoji in the Game Info Bar.
-  
-### Game Info Bar (New)
+---
 
-- Displays whose turn it is.
-- A clickable dice emoji that shows the result when rolled.
-- Inventory ("Bag of Holding") for each player.
-- Game info messages like "Battle!", "Treasure!", etc. (planned, not yet implemented).
+## What Needs To Be Done Next
 
-## Game Mechanics
+1. **Game Info Bar Optimization**: Although the layout has been modified, further optimization might be required as more features are added.
 
-### Setup
+2. **Player Inventory**: Each player's "Bag of Holding" is currently only an icon. The functionality to view and use inventory items needs to be developed.
 
-1. **Token Selection**: Each player selects an emoji token.
-2. **Game Start**: The game begins after both players have selected their tokens.
+3. **In-Game Messages**: A mechanism for displaying in-game messages like "Battle!", "Treasure!", etc., in the Game Info Bar needs to be developed.
 
-### Main Game Loop
+4. **Game Mechanics**: Additional game mechanics like battles, treasures, and special squares are to be added.
 
-1. **Roll Dice**: A player clicks the dice emoji to roll a six-faced dice.
-2. **Movement**: The player moves the number of squares indicated by the dice roll.
-3. **Turn End**: The next player takes their turn.
+5. **Code Refactoring**: As the code base grows, refactoring might be necessary for maintainability.
 
-### Inventory (New)
+6. **Testing**: Ensure that all features work as expected and are compatible with each other.
 
-- "Bag of Holding" is displayed but functionality to use or collect items is not yet implemented.
+---
 
-### Winning Condition
+## Steps to Resume Work
 
-- **Not Yet Implemented**
+1. **Review This Guide**: To get an overview of the project status and what needs to be done.
 
-### Progression
+2. **Review the `script.js`**: To familiarize yourself with the existing code.
 
-- **Not Yet Implemented**
+3. **Prioritize Tasks**: Decide the order in which the pending tasks should be tackled based on this guide and your own assessment.
 
-## Development Phases
+4. **Development**: Start developing features or fixing issues based on the prioritized list.
 
-1. **Phase 1: Basic Grid Layout and Player Movement**
-    - Player Tokens: Players choose from available emoji tokens.
-    - Dice Roll Mechanism: A clickable dice emoji in the Game Info Bar.
-    - Player Movement: Players move based on the dice roll.
-    - Turn Mechanics: Turn passes to the next player after a move.
-    - Game Info Bar: Displays turn, dice roll result, and player inventory.
+5. **Testing**: Continuously test new changes to ensure they integrate well with existing features.
 
-2. **Phase 2**: Implementation of bad guys and basic battle mechanics.
-3. **Phase 3**: Implementation of treasures and their utilities.
-4. **Phase 4**: Implementation of special squares and their effects.
-5. **Phase 5**: Implementation of winning conditions and level transitions.
+6. **Documentation**: Update this guide or other project documentation as necessary.
+
+---
+
+## Important Notes
+
+- All changes should be tested in various browser sizes to ensure responsiveness.
+- Consider incremental development, starting with simpler tasks before moving on to complex features.
+- It's advisable to maintain version control to manage the different stages of the project effectively.
+
