@@ -80,7 +80,7 @@ function startGame() {
         return this.add.text(cellWidth / 2, game.canvas.height - infoBarHeight - cellHeight / 2, token.emoji, { fontSize: '32px' });
     });
 
-    turnText = this.add.text(100, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
+    turnText = this.add.text(150, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
     updateTurnText();
 
     diceRollButton = this.add.text(20, game.canvas.height - infoBarHeight / 2, '🎲', { fontSize: '48px' });
