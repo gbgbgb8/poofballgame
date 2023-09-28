@@ -76,18 +76,18 @@ function startGame() {
     setupScreen.setVisible(false);
     players = selectedTokens.map((tokenId, index) => {
         const token = tokenOptions.find(option => option.id === tokenId);
-        bagsOfHolding[index] = this.add.text(400 + index * 200, game.canvas.height - infoBarHeight / 2, `${token.emoji} 👜`, { fontSize: '24px' });
+        bagsOfHolding[index] = this.add.text(500 + index * 100, game.canvas.height - infoBarHeight / 2, `${token.emoji} 👜`, { fontSize: '24px' });
         return this.add.text(cellWidth / 2, game.canvas.height - infoBarHeight - cellHeight / 2, token.emoji, { fontSize: '32px' });
     });
 
-    turnText = this.add.text(60, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
+    turnText = this.add.text(100, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
     updateTurnText();
 
     diceRollButton = this.add.text(20, game.canvas.height - infoBarHeight / 2, '🎲', { fontSize: '48px' });
     diceRollButton.setInteractive();
     diceRollButton.on('pointerdown', rollDice);
 
-    diceRollResult = this.add.text(80, game.canvas.height - infoBarHeight / 2, '', { fontSize: '48px' });
+    diceRollResult = this.add.text(70, game.canvas.height - infoBarHeight / 2, '', { fontSize: '48px' });
 
     gameInfoText = this.add.text(700, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
 }
