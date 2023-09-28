@@ -76,7 +76,10 @@ function startGame() {
     setupScreen.setVisible(false);
     players = selectedTokens.map((tokenId, index) => {
         const token = tokenOptions.find(option => option.id === tokenId);
-        bagsOfHolding[index] = this.add.text(500 + index * 100, game.canvas.height - infoBarHeight / 2, `${token.emoji} 👜`, { fontSize: '24px' });
+        const bag = this.add.text(500 + index * 100, game.canvas.height - infoBarHeight / 2, '👜', { fontSize: '24px' });
+        bag.setInteractive();
+        bag.on('pointerdown', () => showInventory.call(this, index));
+        bagsOfHolding[index] = bag;
         return this.add.text(cellWidth / 2, game.canvas.height - infoBarHeight - cellHeight / 2, token.emoji, { fontSize: '32px' });
     });
 
@@ -90,6 +93,11 @@ function startGame() {
     diceRollResult = this.add.text(70, game.canvas.height - infoBarHeight / 2, '', { fontSize: '48px' });
 
     gameInfoText = this.add.text(700, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
+}
+
+function showInventory(playerIndex) {
+    // Placeholder for showing inventory
+    gameInfoText.setText('Show Inventory');
 }
 
 function updateTurnText() {
