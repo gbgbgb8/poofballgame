@@ -35,7 +35,6 @@ function create() {
         { id: 'cat', emoji: '🐱' }
     ];
     drawSetupScreen.call(this);
-
     gridGraphics = this.add.graphics();
     drawGrid.call(this);
 }
@@ -83,13 +82,13 @@ function startGame() {
     turnText = this.add.text(20, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
     updateTurnText();
 
-    diceRollButton = this.add.text(120, game.canvas.height - infoBarHeight / 2, '🎲', { fontSize: '48px' });
+    diceRollButton = this.add.text(70, game.canvas.height - infoBarHeight / 2, '🎲', { fontSize: '48px' });
     diceRollButton.setInteractive();
     diceRollButton.on('pointerdown', rollDice);
 
-    diceRollResult = this.add.text(200, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
+    diceRollResult = this.add.text(130, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
 
-    gameInfoText = this.add.text(700, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
+    gameInfoText = this.add.text(600, game.canvas.height - infoBarHeight / 2, '', { fontSize: '24px' });
 }
 
 function updateTurnText() {

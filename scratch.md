@@ -1,7 +1,3 @@
-Great, then I will go ahead and create a detailed guide for resuming this project tomorrow.
-
----
-
 # PoofBall Board Game: Resumption Guide
 
 ## Project Overview
@@ -59,12 +55,6 @@ As of the last update, the game:
 - All changes should be tested in various browser sizes to ensure responsiveness.
 
 This guide should provide a good starting point for resuming work on the PoofBall Board Game.
-
----
-
-Certainly, based on the current state of the game and its features, here's an updated and detailed manual that you can use to replace the existing one:
-
----
 
 # PoofBall Board Game - Updated Instruction Manual and Game Layout
 
@@ -139,7 +129,3 @@ The PoofBalls Board Game is a web-based, 2D grid-based game designed for 2 playe
 3. **Phase 3**: Implementation of treasures and their utilities.
 4. **Phase 4**: Implementation of special squares and their effects.
 5. **Phase 5**: Implementation of winning conditions and level transitions.
-
----
-
-This updated manual should give a more accurate picture of where the game currently stands and what has been implemented so far. Feel free to use this as the new instruction manual.
